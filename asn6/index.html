@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 6 Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Assignment 6 - HTML Form</h1>
+
+    <!-- Form with validation triggered by JS function -->
+    <form action="#" method="POST" onsubmit="return validateForm()">
+        <!-- Text Input -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <!-- Email Input -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <!-- Password Input -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <!-- Checkbox -->
+        <label for="subscribe">Subscribe to newsletter:</label>
+        <input type="checkbox" id="subscribe" name="subscribe"><br><br>
+
+        <!-- Color Picker -->
+        <label for="favcolor">Choose your favorite color:</label>
+        <input type="color" id="favcolor" name="favcolor"><br><br>
+
+        <!-- Radio Button -->
+        <fieldset>
+            <legend>Choose your gender:</legend>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label><br>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label><br>
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label>
+        </fieldset><br>
+
+        <!-- Range Input -->
+        <label for="volume">Volume:</label>
+        <input type="range" id="volume" name="volume" min="0" max="100"><br><br>
+
+        <!-- File Upload -->
+        <label for="file">Upload a file:</label>
+        <input type="file" id="file" name="file"><br><br>
+
+        <!-- Dropdown (Select) -->
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option value="usa">USA</option>
+            <option value="uk">UK</option>
+            <option value="canada">Canada</option>
+        </select><br><br>
+
+        <!-- Textarea -->
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+
+        <!-- Reset and Submit Buttons -->
+        <input type="reset" value="Reset">
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- JavaScript Validation -->
+    <script>
+        function validateForm() {
+            // Validate Name (Non-empty)
+            var name = document.getElementById("name").value;
+            if (name == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+
+            // Validate Email (Proper format)
+            var email = document.getElementById("email").value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Basic email format check
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address");
+                return false;
+            }
+
+            // Validate Password (Non-empty)
+            var password = document.getElementById("password").value;
+            if (password == "") {
+                alert("Password must be filled out");
+                return false;
+            }
+
+            // Validate Gender (At least one selected)
+            var genderSelected = document.querySelector('input[name="gender"]:checked');
+            if (!genderSelected) {
+                alert("Please select your gender");
+                return false;
+            }
+
+            // Validate File Upload (Ensure file is uploaded)
+            var file = document.getElementById("file").value;
+            if (file == "") {
+                alert("Please upload a file");
+                return false;
+            }
+
+            // If all validations pass
+            return true;
+        }
+    </script>
+
+</body>
+
+</html>
