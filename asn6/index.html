@@ -102,8 +102,8 @@
             }
 
             // Validate File Upload (Ensure file is uploaded)
-            var file = document.getElementById("file").value;
-            if (file == "") {
+            var fileInput = document.getElementById("file");
+            if (fileInput.files.length === 0) {
                 alert("Please upload a file");
                 return false;
             }
